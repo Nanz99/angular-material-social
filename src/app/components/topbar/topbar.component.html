@@ -1,0 +1,41 @@
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span routerLink="/">My App</span>
+    <span class="example-spacer"></span>
+    <!-- <div *ngIf="!userService.user">
+      <button routerLink="/login" mat-icon-button class="example-icon">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
+    <div *ngIf="userService.user != undefined && userService.user != null" class="logout-container">
+        <button (click)="logout()" mat-button>Logout</button>
+    </div> -->
+
+    <div *ngIf="isShow; else logoutweb">
+      <button routerLink="/login" mat-icon-button class="example-icon">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </div>
+      <ng-template #logoutweb class="logout-container">
+        <button (click)="logout()" mat-button>Logout</button>
+    </ng-template>
+    <!-- <div [ngSwitch]="isShow">
+    <div *ngSwitchCase="false">
+       <div >
+     <button routerLink="/login" mat-icon-button class="example-icon" >
+     <mat-icon>account_circle</mat-icon>
+    </button> </div>
+    </div>
+    <div *ngSwitchCase="true">  <div>
+     <button (click)="logout()" mat-icon-button class="example-icon" >
+      =>
+    </button> </div>
+    </div>  
+    <div *ngSwitchDefault>...</div> -->
+    <!-- </div> -->
+
+  </mat-toolbar>
+</p>

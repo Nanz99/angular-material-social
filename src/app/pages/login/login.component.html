@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="form-container">
+    <div class="title">Login</div>
+    <form [formGroup]="loginForm" (ngSubmit)="handleLogin($event)">
+      <mat-form-field appearance="outline">
+        <mat-label>Enter you email</mat-label>
+        <input matInput formControlName="email" />
+        <mat-error *ngIf="loginForm.controls['email'].invalid">
+          {{
+            loginForm.controls["email"].hasError("required")
+              ? "Email is required"
+              : "Please enter a vaild email"
+          }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter you password</mat-label>
+        <input type="password" matInput formControlName="password" />
+
+        <mat-error *ngIf="loginForm.controls['password'].invalid">
+          {{
+            loginForm.controls["password"].hasError("required")
+              ? "Password is required"
+              : loginForm.controls["password"].hasError("minlength")
+              ? "Password should be atleast 6 characters long"
+              : "Password must contain at least one lowercase character, uppercase character, one number and one special character"
+          }}
+        </mat-error>
+      </mat-form-field>
+      <div class="buttons-container">
+        <button
+          mat-raised-button
+            type="submit"
+
+          class="login-button"
+        >
+          Login
+        </button>
+        <p>OR</p>
+        <button routerLink="/register" mat-button>Create account</button>
+      </div>
+    </form>
+  </div>
+</div>

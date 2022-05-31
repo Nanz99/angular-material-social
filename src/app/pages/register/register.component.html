@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="form-container">
+    <div class="title">Create Account</div>
+    <form [formGroup]="createAccountForm" (ngSubmit)="handleSubmit($event)">
+      <mat-form-field appearance="outline">
+        <mat-label>Enter you email</mat-label>
+        <input matInput formControlName="email" />
+        <mat-error *ngIf="createAccountForm.controls['email'].invalid">
+          {{
+            createAccountForm.controls["email"].hasError("required")
+              ? "Email is required"
+              : "Please enter a vaild email"
+          }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter you username</mat-label>
+        <input matInput formControlName="username" />
+        <mat-error *ngIf="createAccountForm.controls['username'].invalid">
+          {{
+            createAccountForm.controls["username"].hasError("required")
+              ? "Username is required"
+              : "Username cannot be longer than 10 characters"
+          }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter you password</mat-label>
+        <input type="text" matInput formControlName="password" />
+        <mat-error *ngIf="createAccountForm.controls['password'].invalid">
+          {{
+            createAccountForm.controls["password"].hasError("required")
+              ? "Password is required"
+              : createAccountForm.controls["password"].hasError("minlength")
+              ? "Password should be atleast 6 characters long"
+              : "Password must contain at least one lowercase character, uppercase character, one number and one special character"
+          }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter you password </mat-label>
+        <input type="password" matInput formControlName="confirmPassword" />
+        <mat-error
+          *ngIf="createAccountForm.controls['confirmPassword'].invalid"
+        >
+          {{
+            createAccountForm.controls["confirmPassword"].hasError("required")
+              ? "Password is required"
+              : ""
+          }}
+        </mat-error>
+
+        <mat-error
+          *ngIf="
+            createAccountForm.controls['confirmPassword'].hasError('matching')
+          "
+        >
+          Confirm Password does not match
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Phone Number</mat-label>
+        <input
+          type="phone"
+          matInput
+          formControlName="phoneNumber"
+          placeholder="Enter your phone number"
+        />
+        <mat-error *ngIf="createAccountForm.controls['phoneNumber'].invalid">
+          {{
+            createAccountForm.controls["phoneNumber"].hasError("required")
+              ? "Phone Number is required"
+              : createAccountForm.controls["phoneNumber"].hasError("pattern")
+              ? "Phone Number is not valid"
+              : ""
+          }}
+        </mat-error>
+      </mat-form-field>
+      <div class="buttons-container">
+        <button type="submit" mat-raised-button class="login-button">
+          Create Account
+        </button>
+        <p>OR</p>
+        <button routerLink="/login" mat-button>Login</button>
+      </div>
+    </form>
+  </div>
+</div>
